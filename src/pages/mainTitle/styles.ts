@@ -54,7 +54,7 @@ export const Maintitle = styled.div<{ slide: boolean }>`
   font-family: '별빛하늘L';
   transform: ${({ slide }) => (slide ? 'translateY(0)' : 'translateY(50px)')};
   opacity: ${({ slide }) => (slide ? '1' : '0')};
-  transition: transform 1s ease-out, opacity 1s ease-out 2.6s;
+  transition: transform 1s ease-out, opacity 1s ease-out 1.6s;
 `
 
 export const Subtitle = styled.div<{ slide:boolean }>`
@@ -66,5 +66,5 @@ export const Subtitle = styled.div<{ slide:boolean }>`
   font-size: large;
   transform: ${({ slide }) => (slide ? 'translateY(0)' : 'translateY(50px)')};
   opacity: ${({ slide }) => (slide ? '1' : '0')};
-  transition: transform 1s ease-out, opacity 1s ease-out 3s;
+  transition: transform 1s ease-out, opacity 1s ease-out 2s;
 `
