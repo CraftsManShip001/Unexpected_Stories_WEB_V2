@@ -10,11 +10,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import ReadStoryBackground from './ReadStoryBackground';
 // import ReadStory from './ReadStory';
 import MainPage from './pages/mainTitle';
+import ChoiceBusStop from './pages/choiceBusStop';
 
 function App() {
   const server = process.env.REACT_APP_PYTHON
-  const [latitude, setLatitude] = useState('')
-  const [longitude, setLongitude] = useState('')
+  const [latitude, setLatitude] = useState(0)
+  const [longitude, setLongitude] = useState(0)
   const [bus_stops, setBus_stops] = useState([])
 
   // const findBusStop = async () => {
@@ -38,6 +39,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path = "/" element = {<MainPage></MainPage>}></Route>
+          <Route path = "/ChoiceBusStop" element = {<ChoiceBusStop bus_stops={[['1','부산소프트웨어마이스터고등학교','135'],['1','부산소프트웨어마이스터고등학교','135'],['1','부산소프트웨어마이스터고등학교','135']]} findBusStop={()=>{console.log('test')}} setLatitude={setLatitude} setLongitude={setLongitude}></ChoiceBusStop>}></Route>
           {/* <Route path='/WriteStory' element={<WriteStory />} />
           <Route path='/' element={<MainTitle setLatitude={setLatitude} setLongitude={setLongitude}/>} />
           <Route path='/ChoiceBusStop' element={<ChoiceBusStop bus_stops={bus_stops} findBusStop={findBusStop} setLatitude={setLatitude} setLongitude={setLongitude}/>} />

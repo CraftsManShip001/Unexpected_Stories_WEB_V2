@@ -57,7 +57,7 @@ export const Maintitle = styled.div<{ slide: boolean }>`
   transition: transform 1s ease-out, opacity 1s ease-out 2.6s;
 `
 
-export const Subtitle = styled.div<{ slide:boolean}>`
+export const Subtitle = styled.div<{ slide:boolean }>`
   display: block;
   text-align: center;
   margin: 2em 0;

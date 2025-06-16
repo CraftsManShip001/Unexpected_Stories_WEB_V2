@@ -1,30 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useNavigate,useLocation } from "react-router-dom";
+import { useEffect } from 'react';
+import ListBusStop from '../../components/Button/ListBusStop';
 import * as S from './styles';
+import Button from '../../components/Button/Button';
 
-function MainPage() {
-    const [visible, setVisible] = useState(false);
-    const navigate = useNavigate();
+interface ChoiceBusStopProps {
+    bus_stops : string[][]
+    findBusStop : ()=>void
+    setLatitude : (latitude : number)=>void
+    setLongitude : (longitude : number)=>void
+}
+
+function ChoiceBusStop({bus_stops, findBusStop, setLatitude, setLongitude} : ChoiceBusStopProps) {
+    
+    const handleReload = () => {
+        navigator.geolocation.getCurrentPosition((position) => {
+            setLatitude(position.coords.latitude)
+            setLongitude(position.coords.longitude)
+        })
+
+        findBusStop()
+    }
+
+    useEffect(() => {
+        handleReload()
+    }, [])
 
     return (
         <div>
-            <div className='night'>
-                <S.Star></S.Star>
-                <S.Star></S.Star>
-                <S.Star></S.Star>
-            </div>
-            <h1 className={`Maintitle ${visible ? 'slide-up' : ''}`}>
-                어쩌다<br />발견한<br />이야기
-            </h1>
-            <span className={`subtitle ${visible ? 'slide-up' : ''}`}>우리 동네를 스쳐 지나가는 사람들,<br />
-                그들이 주인공이 되어 들려주는 이야기
-            </span>
-            <Link to="/ChoiceBusStop" style={{ textDecoration: "none" }}>
-                <button className={`startBtn ${visible ? 'slide-up' : ''}`}><span>시작하기</span></button>
-            </Link>
+            <S.Title>어느 정류장의 이야기를 해볼까?</S.Title>
+            <ul style={{padding:'0'}}>
+                {bus_stops.map((item : string[]) => (
+                    <ListBusStop BusStop={item}/>
+                ))}
+            </ul>
+            <Button onClick={handleReload} content='새로고침'></Button>
         </div>
     );
-}
+};
 
-export default MainPage
+export default ChoiceBusStop;
